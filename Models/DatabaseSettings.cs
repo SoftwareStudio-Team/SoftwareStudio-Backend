@@ -9,5 +9,7 @@ namespace Backend.Models
         public string AccountsCollectionName { get; set; } = String.Empty;
 
         public string ContentsCollectionName { get; set; } = String.Empty;
+
+        public string CommentsCollectionName { get; set; } = String.Empty;
     }
 }

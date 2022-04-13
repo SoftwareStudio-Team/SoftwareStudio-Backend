@@ -44,7 +44,7 @@ public class ContentsController : ControllerBase
     }
 
     [HttpPut("{id}")] // PUT api/Contents/{id}
-    public ActionResult<Account> Update(string id, [FromBody] Content content)
+    public ActionResult Update(string id, [FromBody] Content content)
     {
         var existingContent = this._contentService.Get(id);
 
@@ -59,7 +59,7 @@ public class ContentsController : ControllerBase
     }
 
     [HttpDelete("{id}")] // DELETE api/Contents/{id}
-    public ActionResult<Account> Delete(string id)
+    public ActionResult<Content> Delete(string id)
     {
         var existingContent = this._contentService.Get(id);
 
@@ -74,14 +74,14 @@ public class ContentsController : ControllerBase
     }
 
     [HttpPut("like/{id}")] // PUT api/Contents/like/{id}
-    public ActionResult<Account> like(string id)
+    public ActionResult like(string id)
     {
         /* implement like logic here */
         return NoContent();
     }
 
     [HttpPut("unlike/{id}")] // PUT api/Contents/unlike/{id}
-    public ActionResult<Account> unlike(string id)
+    public ActionResult unlike(string id)
     {
         /* implement unlike logic here */
         return NoContent();

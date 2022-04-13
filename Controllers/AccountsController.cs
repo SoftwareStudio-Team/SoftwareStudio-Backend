@@ -44,7 +44,7 @@ public class AccountsController : ControllerBase
     }
 
     [HttpPut("{id}")] // PUT api/Accounts/{id}
-    public ActionResult<Account> Update(string id, [FromBody] Account account)
+    public ActionResult Update(string id, [FromBody] Account account)
     {
         var existingAccount = this._accountService.Get(id);
 
@@ -59,7 +59,7 @@ public class AccountsController : ControllerBase
     }
 
     [HttpDelete("{id}")] // DELETE api/Accounts/{id}
-    public ActionResult<Account> Delete(string id)
+    public ActionResult Delete(string id)
     {
         var existingAccount = this._accountService.Get(id);
 
@@ -74,7 +74,7 @@ public class AccountsController : ControllerBase
     }
 
     [HttpPut("/ban/{id}")] // PUT api/Accounts/ban/{id}
-    public ActionResult<Account> Ban(string id)
+    public ActionResult Ban(string id)
     {
         var existingAccount = this._accountService.Get(id);
 
@@ -90,7 +90,7 @@ public class AccountsController : ControllerBase
     }
 
     [HttpPut("/unban/{id}")] // PUT api/Accounts/unban/{id}
-    public ActionResult<Account> Unban(string id)
+    public ActionResult Unban(string id)
     {
         var existingAccount = this._accountService.Get(id);
 

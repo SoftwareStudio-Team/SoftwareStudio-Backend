@@ -16,7 +16,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("login")] // POST api/Auth/login
-    public ActionResult<Account> LogIn([FromBody] LoginForm loginForm)
+    public ActionResult LogIn([FromBody] LoginForm loginForm)
     {
         /* implement login logic here */
         return NoContent();
