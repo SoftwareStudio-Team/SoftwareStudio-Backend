@@ -16,8 +16,8 @@ namespace Backend.Models
         [BsonElement("createDate")]
         public DateTime CreateDate { get; set; }
 
-        [BsonElement("visible")]
-        public bool IsVisible { get; set; } = false;
+        [BsonElement("hid")]
+        public bool IsHid { get; set; } = false;
 
         [BsonElement("contentId")]
         public string ContentId { get; set; }
