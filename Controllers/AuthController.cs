@@ -16,14 +16,14 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("login")] // POST api/Auth/login
-    public ActionResult<Account> Post([FromBody] LoginForm loginForm)
+    public ActionResult<Account> LogIn([FromBody] LoginForm loginForm)
     {
         /* implement login logic here */
         return NoContent();
     }
 
     [HttpGet("logout")] // GET api/Auth/logout
-    public ActionResult Get()
+    public ActionResult LogOut()
     {
         /* implement logout logic here */
         return NoContent();

@@ -6,6 +6,8 @@ namespace Backend.Services
     {
         Content Get(string id);
 
+        List<Content> Gets();
+
         Content Create(Content content);
 
         void Update(string id, Content content);

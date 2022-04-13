@@ -19,6 +19,11 @@ namespace Backend.Services
             return this._accounts.Find(element => element.Id == id).FirstOrDefault();
         }
 
+        public List<Account> Gets()
+        {
+            return this._accounts.Find(element => true).ToList();
+        }
+
         public Account Create(Account account)
         {
             this._accounts.InsertOne(account);

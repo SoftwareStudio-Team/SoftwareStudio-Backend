@@ -6,6 +6,8 @@ namespace Backend.Services
     {
         Account Get(string id);
 
+        List<Account> Gets();
+
         Account Create(Account account);
 
         void Update(string id, Account account);

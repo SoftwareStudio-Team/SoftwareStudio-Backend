@@ -28,8 +28,15 @@ public class ContentsController : ControllerBase
         return content;
     }
 
+    [HttpGet] // GET api/Contents
+    public ActionResult<List<Content>> Gets()
+    {
+        var contents = this._contentService.Gets();
+        return contents;
+    }
+
     [HttpPost] // POST api/Contents
-    public ActionResult<Content> Post([FromBody] Content content)
+    public ActionResult<Content> Create([FromBody] Content content)
     {
         this._contentService.Create(content);
 
@@ -37,7 +44,7 @@ public class ContentsController : ControllerBase
     }
 
     [HttpPut("{id}")] // PUT api/Contents/{id}
-    public ActionResult<Account> Put(string id, [FromBody] Content content)
+    public ActionResult<Account> Update(string id, [FromBody] Content content)
     {
         var existingContent = this._contentService.Get(id);
 
@@ -64,5 +71,19 @@ public class ContentsController : ControllerBase
         this._contentService.Remove(id);
 
         return Ok($"Content Id:{id} deleted");
+    }
+
+    [HttpPut("like/{id}")] // PUT api/Contents/like/{id}
+    public ActionResult<Account> like(string id)
+    {
+        /* implement like logic here */
+        return NoContent();
+    }
+
+    [HttpPut("unlike/{id}")] // PUT api/Contents/unlike/{id}
+    public ActionResult<Account> unlike(string id)
+    {
+        /* implement unlike logic here */
+        return NoContent();
     }
 }

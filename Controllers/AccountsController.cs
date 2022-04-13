@@ -28,8 +28,15 @@ public class AccountsController : ControllerBase
         return account;
     }
 
+    [HttpGet] // GET api/Accounts
+    public ActionResult<List<Account>> Gets()
+    {
+        var accounts = this._accountService.Gets();
+        return accounts;
+    }
+
     [HttpPost] // POST api/Accounts
-    public ActionResult<Account> Post([FromBody] Account account)
+    public ActionResult<Account> Create([FromBody] Account account)
     {
         this._accountService.Create(account);
 
@@ -37,7 +44,7 @@ public class AccountsController : ControllerBase
     }
 
     [HttpPut("{id}")] // PUT api/Accounts/{id}
-    public ActionResult<Account> Put(string id, [FromBody] Account account)
+    public ActionResult<Account> Update(string id, [FromBody] Account account)
     {
         var existingAccount = this._accountService.Get(id);
 
@@ -64,5 +71,37 @@ public class AccountsController : ControllerBase
         this._accountService.Remove(id);
 
         return Ok($"Account Id:{id} deleted");
+    }
+
+    [HttpPut("/ban/{id}")] // PUT api/Accounts/ban/{id}
+    public ActionResult<Account> Ban(string id)
+    {
+        var existingAccount = this._accountService.Get(id);
+
+        if (existingAccount == null)
+        {
+            return NotFound(new { message = $"Account Id:{id} is not found" });
+        }
+
+        existingAccount.IsBanned = true;
+        this._accountService.Update(id, existingAccount);
+
+        return NoContent();
+    }
+
+    [HttpPut("/unban/{id}")] // PUT api/Accounts/unban/{id}
+    public ActionResult<Account> Unban(string id)
+    {
+        var existingAccount = this._accountService.Get(id);
+
+        if (existingAccount == null)
+        {
+            return NotFound(new { message = $"Account Id:{id} is not found" });
+        }
+
+        existingAccount.IsBanned = false;
+        this._accountService.Update(id, existingAccount);
+
+        return NoContent();
     }
 }

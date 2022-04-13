@@ -19,6 +19,11 @@ namespace Backend.Services
             return this._contents.Find(element => element.Id == id).FirstOrDefault();
         }
 
+        public List<Content> Gets()
+        {
+            return this._contents.Find(element => true).ToList();
+        }
+
         public Content Create(Content content)
         {
             this._contents.InsertOne(content);
