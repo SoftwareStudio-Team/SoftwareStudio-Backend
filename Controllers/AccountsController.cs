@@ -5,7 +5,6 @@ using Backend.Services;
 
 namespace Backend.Controllers;
 
-[ApiController]
 [Route("api/[controller]")]
 public class AccountsController : ControllerBase
 {

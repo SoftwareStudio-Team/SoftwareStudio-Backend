@@ -7,5 +7,7 @@ namespace Backend.Models
         string ConnectionURI { get; set; }
 
         string AccountsCollectionName { get; set; }
+
+        string ContentsCollectionName { get; set; }
     }
 }
