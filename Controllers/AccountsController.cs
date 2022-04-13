@@ -73,7 +73,7 @@ public class AccountsController : ControllerBase
         return Ok($"Account Id:{id} deleted");
     }
 
-    [HttpPut("/ban/{id}")] // PUT api/Accounts/ban/{id}
+    [HttpPut("ban/{id}")] // PUT api/Accounts/ban/{id}
     public ActionResult Ban(string id)
     {
         var existingAccount = this._accountService.Get(id);
@@ -89,7 +89,7 @@ public class AccountsController : ControllerBase
         return NoContent();
     }
 
-    [HttpPut("/unban/{id}")] // PUT api/Accounts/unban/{id}
+    [HttpPut("unban/{id}")] // PUT api/Accounts/unban/{id}
     public ActionResult Unban(string id)
     {
         var existingAccount = this._accountService.Get(id);

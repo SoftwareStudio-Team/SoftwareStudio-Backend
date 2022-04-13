@@ -90,14 +90,32 @@ public class CommentsController : ControllerBase
     [HttpPut("hide/{id}")] // PUT api/Comments/hide/{id}
     public ActionResult hide(string id)
     {
-        /* implement hide logic here */
+        var existingComment = this._commentService.Get(id);
+
+        if (existingComment == null)
+        {
+            return NotFound(new { message = $"Comment Id:{id} is not found" });
+        }
+
+        existingComment.IsHid = true;
+        this._commentService.Update(id, existingComment);
+
         return NoContent();
     }
 
     [HttpPut("unhide/{id}")] // PUT api/Comment/unhide/{id}
     public ActionResult unhide(string id)
     {
-        /* implement unhide logic here */
+        var existingComment = this._commentService.Get(id);
+
+        if (existingComment == null)
+        {
+            return NotFound(new { message = $"Comment Id:{id} is not found" });
+        }
+
+        existingComment.IsHid = false;
+        this._commentService.Update(id, existingComment);
+
         return NoContent();
     }
 }
