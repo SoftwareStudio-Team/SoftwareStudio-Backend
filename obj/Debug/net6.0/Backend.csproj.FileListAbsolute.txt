@@ -1,43 +1,86 @@
-C:\Users\Admin\Desktop\Software Studio\Backend\bin\Debug\net6.0\appsettings.Development.json
-C:\Users\Admin\Desktop\Software Studio\Backend\bin\Debug\net6.0\appsettings.json
-C:\Users\Admin\Desktop\Software Studio\Backend\bin\Debug\net6.0\Backend.exe
-C:\Users\Admin\Desktop\Software Studio\Backend\bin\Debug\net6.0\Backend.deps.json
-C:\Users\Admin\Desktop\Software Studio\Backend\bin\Debug\net6.0\Backend.runtimeconfig.json
-C:\Users\Admin\Desktop\Software Studio\Backend\bin\Debug\net6.0\Backend.dll
-C:\Users\Admin\Desktop\Software Studio\Backend\bin\Debug\net6.0\Backend.pdb
-C:\Users\Admin\Desktop\Software Studio\Backend\bin\Debug\net6.0\Microsoft.OpenApi.dll
-C:\Users\Admin\Desktop\Software Studio\Backend\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
-C:\Users\Admin\Desktop\Software Studio\Backend\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-C:\Users\Admin\Desktop\Software Studio\Backend\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-C:\Users\Admin\Desktop\Software Studio\Backend\obj\Debug\net6.0\Backend.csproj.AssemblyReference.cache
-C:\Users\Admin\Desktop\Software Studio\Backend\obj\Debug\net6.0\Backend.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Admin\Desktop\Software Studio\Backend\obj\Debug\net6.0\Backend.AssemblyInfoInputs.cache
-C:\Users\Admin\Desktop\Software Studio\Backend\obj\Debug\net6.0\Backend.AssemblyInfo.cs
-C:\Users\Admin\Desktop\Software Studio\Backend\obj\Debug\net6.0\Backend.csproj.CoreCompileInputs.cache
-C:\Users\Admin\Desktop\Software Studio\Backend\obj\Debug\net6.0\Backend.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Admin\Desktop\Software Studio\Backend\obj\Debug\net6.0\Backend.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Admin\Desktop\Software Studio\Backend\obj\Debug\net6.0\staticwebassets.build.json
-C:\Users\Admin\Desktop\Software Studio\Backend\obj\Debug\net6.0\staticwebassets.development.json
-C:\Users\Admin\Desktop\Software Studio\Backend\obj\Debug\net6.0\scopedcss\bundle\Backend.styles.css
-C:\Users\Admin\Desktop\Software Studio\Backend\obj\Debug\net6.0\Backend.csproj.CopyComplete
-C:\Users\Admin\Desktop\Software Studio\Backend\obj\Debug\net6.0\Backend.dll
-C:\Users\Admin\Desktop\Software Studio\Backend\obj\Debug\net6.0\refint\Backend.dll
-C:\Users\Admin\Desktop\Software Studio\Backend\obj\Debug\net6.0\Backend.pdb
-C:\Users\Admin\Desktop\Software Studio\Backend\obj\Debug\net6.0\Backend.genruntimeconfig.cache
-C:\Users\Admin\Desktop\Software Studio\Backend\obj\Debug\net6.0\ref\Backend.dll
-C:\Users\Admin\Desktop\Software Studio\Backend\bin\Debug\net6.0\DnsClient.dll
-C:\Users\Admin\Desktop\Software Studio\Backend\bin\Debug\net6.0\MongoDB.Bson.dll
-C:\Users\Admin\Desktop\Software Studio\Backend\bin\Debug\net6.0\MongoDB.Driver.dll
-C:\Users\Admin\Desktop\Software Studio\Backend\bin\Debug\net6.0\MongoDB.Driver.Core.dll
-C:\Users\Admin\Desktop\Software Studio\Backend\bin\Debug\net6.0\MongoDB.Libmongocrypt.dll
-C:\Users\Admin\Desktop\Software Studio\Backend\bin\Debug\net6.0\SharpCompress.dll
-C:\Users\Admin\Desktop\Software Studio\Backend\bin\Debug\net6.0\runtimes\linux\native\libsnappy64.so
-C:\Users\Admin\Desktop\Software Studio\Backend\bin\Debug\net6.0\runtimes\linux\native\libzstd.so
-C:\Users\Admin\Desktop\Software Studio\Backend\bin\Debug\net6.0\runtimes\osx\native\libsnappy64.dylib
-C:\Users\Admin\Desktop\Software Studio\Backend\bin\Debug\net6.0\runtimes\osx\native\libzstd.dylib
-C:\Users\Admin\Desktop\Software Studio\Backend\bin\Debug\net6.0\runtimes\win\native\libzstd.dll
-C:\Users\Admin\Desktop\Software Studio\Backend\bin\Debug\net6.0\runtimes\win\native\snappy32.dll
-C:\Users\Admin\Desktop\Software Studio\Backend\bin\Debug\net6.0\runtimes\win\native\snappy64.dll
-C:\Users\Admin\Desktop\Software Studio\Backend\bin\Debug\net6.0\runtimes\linux\native\libmongocrypt.so
-C:\Users\Admin\Desktop\Software Studio\Backend\bin\Debug\net6.0\runtimes\osx\native\libmongocrypt.dylib
-C:\Users\Admin\Desktop\Software Studio\Backend\bin\Debug\net6.0\runtimes\win\native\mongocrypt.dll
+C:/Users/Admin/Desktop/Software Studio/Backend/bin/Debug/net6.0/appsettings.Development.json
+C:/Users/Admin/Desktop/Software Studio/Backend/bin/Debug/net6.0/appsettings.json
+C:/Users/Admin/Desktop/Software Studio/Backend/bin/Debug/net6.0/Backend.exe
+C:/Users/Admin/Desktop/Software Studio/Backend/bin/Debug/net6.0/Backend.deps.json
+C:/Users/Admin/Desktop/Software Studio/Backend/bin/Debug/net6.0/Backend.runtimeconfig.json
+C:/Users/Admin/Desktop/Software Studio/Backend/bin/Debug/net6.0/Backend.dll
+C:/Users/Admin/Desktop/Software Studio/Backend/bin/Debug/net6.0/Backend.pdb
+C:/Users/Admin/Desktop/Software Studio/Backend/bin/Debug/net6.0/Microsoft.OpenApi.dll
+C:/Users/Admin/Desktop/Software Studio/Backend/bin/Debug/net6.0/Swashbuckle.AspNetCore.Swagger.dll
+C:/Users/Admin/Desktop/Software Studio/Backend/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+C:/Users/Admin/Desktop/Software Studio/Backend/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+C:/Users/Admin/Desktop/Software Studio/Backend/obj/Debug/net6.0/Backend.csproj.AssemblyReference.cache
+C:/Users/Admin/Desktop/Software Studio/Backend/obj/Debug/net6.0/Backend.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/Admin/Desktop/Software Studio/Backend/obj/Debug/net6.0/Backend.AssemblyInfoInputs.cache
+C:/Users/Admin/Desktop/Software Studio/Backend/obj/Debug/net6.0/Backend.AssemblyInfo.cs
+C:/Users/Admin/Desktop/Software Studio/Backend/obj/Debug/net6.0/Backend.csproj.CoreCompileInputs.cache
+C:/Users/Admin/Desktop/Software Studio/Backend/obj/Debug/net6.0/Backend.MvcApplicationPartsAssemblyInfo.cs
+C:/Users/Admin/Desktop/Software Studio/Backend/obj/Debug/net6.0/Backend.MvcApplicationPartsAssemblyInfo.cache
+C:/Users/Admin/Desktop/Software Studio/Backend/obj/Debug/net6.0/staticwebassets.build.json
+C:/Users/Admin/Desktop/Software Studio/Backend/obj/Debug/net6.0/staticwebassets.development.json
+C:/Users/Admin/Desktop/Software Studio/Backend/obj/Debug/net6.0/scopedcss/bundle/Backend.styles.css
+C:/Users/Admin/Desktop/Software Studio/Backend/obj/Debug/net6.0/Backend.csproj.CopyComplete
+C:/Users/Admin/Desktop/Software Studio/Backend/obj/Debug/net6.0/Backend.dll
+C:/Users/Admin/Desktop/Software Studio/Backend/obj/Debug/net6.0/refint/Backend.dll
+C:/Users/Admin/Desktop/Software Studio/Backend/obj/Debug/net6.0/Backend.pdb
+C:/Users/Admin/Desktop/Software Studio/Backend/obj/Debug/net6.0/Backend.genruntimeconfig.cache
+C:/Users/Admin/Desktop/Software Studio/Backend/obj/Debug/net6.0/ref/Backend.dll
+C:/Users/Admin/Desktop/Software Studio/Backend/bin/Debug/net6.0/DnsClient.dll
+C:/Users/Admin/Desktop/Software Studio/Backend/bin/Debug/net6.0/MongoDB.Bson.dll
+C:/Users/Admin/Desktop/Software Studio/Backend/bin/Debug/net6.0/MongoDB.Driver.dll
+C:/Users/Admin/Desktop/Software Studio/Backend/bin/Debug/net6.0/MongoDB.Driver.Core.dll
+C:/Users/Admin/Desktop/Software Studio/Backend/bin/Debug/net6.0/MongoDB.Libmongocrypt.dll
+C:/Users/Admin/Desktop/Software Studio/Backend/bin/Debug/net6.0/SharpCompress.dll
+C:/Users/Admin/Desktop/Software Studio/Backend/bin/Debug/net6.0/runtimes/linux/native/libsnappy64.so
+C:/Users/Admin/Desktop/Software Studio/Backend/bin/Debug/net6.0/runtimes/linux/native/libzstd.so
+C:/Users/Admin/Desktop/Software Studio/Backend/bin/Debug/net6.0/runtimes/osx/native/libsnappy64.dylib
+C:/Users/Admin/Desktop/Software Studio/Backend/bin/Debug/net6.0/runtimes/osx/native/libzstd.dylib
+C:/Users/Admin/Desktop/Software Studio/Backend/bin/Debug/net6.0/runtimes/win/native/libzstd.dll
+C:/Users/Admin/Desktop/Software Studio/Backend/bin/Debug/net6.0/runtimes/win/native/snappy32.dll
+C:/Users/Admin/Desktop/Software Studio/Backend/bin/Debug/net6.0/runtimes/win/native/snappy64.dll
+C:/Users/Admin/Desktop/Software Studio/Backend/bin/Debug/net6.0/runtimes/linux/native/libmongocrypt.so
+C:/Users/Admin/Desktop/Software Studio/Backend/bin/Debug/net6.0/runtimes/osx/native/libmongocrypt.dylib
+C:/Users/Admin/Desktop/Software Studio/Backend/bin/Debug/net6.0/runtimes/win/native/mongocrypt.dll
+/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/appsettings.Development.json
+/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/appsettings.json
+/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/Backend
+/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/Backend.deps.json
+/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/Backend.runtimeconfig.json
+/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/Backend.dll
+/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/Backend.pdb
+/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/DnsClient.dll
+/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/Microsoft.OpenApi.dll
+/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/MongoDB.Bson.dll
+/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/MongoDB.Driver.dll
+/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/MongoDB.Driver.Core.dll
+/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/MongoDB.Libmongocrypt.dll
+/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/SharpCompress.dll
+/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/Swashbuckle.AspNetCore.Swagger.dll
+/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/runtimes/linux/native/libsnappy64.so
+/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/runtimes/linux/native/libzstd.so
+/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/runtimes/osx/native/libsnappy64.dylib
+/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/runtimes/osx/native/libzstd.dylib
+/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/runtimes/win/native/libzstd.dll
+/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/runtimes/win/native/snappy32.dll
+/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/runtimes/win/native/snappy64.dll
+/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/runtimes/linux/native/libmongocrypt.so
+/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/runtimes/osx/native/libmongocrypt.dylib
+/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/runtimes/win/native/mongocrypt.dll
+/Users/phukphoom/Desktop/Software Studio Project/Backend/obj/Debug/net6.0/Backend.csproj.AssemblyReference.cache
+/Users/phukphoom/Desktop/Software Studio Project/Backend/obj/Debug/net6.0/Backend.GeneratedMSBuildEditorConfig.editorconfig
+/Users/phukphoom/Desktop/Software Studio Project/Backend/obj/Debug/net6.0/Backend.AssemblyInfoInputs.cache
+/Users/phukphoom/Desktop/Software Studio Project/Backend/obj/Debug/net6.0/Backend.AssemblyInfo.cs
+/Users/phukphoom/Desktop/Software Studio Project/Backend/obj/Debug/net6.0/Backend.csproj.CoreCompileInputs.cache
+/Users/phukphoom/Desktop/Software Studio Project/Backend/obj/Debug/net6.0/Backend.MvcApplicationPartsAssemblyInfo.cs
+/Users/phukphoom/Desktop/Software Studio Project/Backend/obj/Debug/net6.0/Backend.MvcApplicationPartsAssemblyInfo.cache
+/Users/phukphoom/Desktop/Software Studio Project/Backend/obj/Debug/net6.0/staticwebassets.build.json
+/Users/phukphoom/Desktop/Software Studio Project/Backend/obj/Debug/net6.0/staticwebassets.development.json
+/Users/phukphoom/Desktop/Software Studio Project/Backend/obj/Debug/net6.0/scopedcss/bundle/Backend.styles.css
+/Users/phukphoom/Desktop/Software Studio Project/Backend/obj/Debug/net6.0/Backend.csproj.CopyComplete
+/Users/phukphoom/Desktop/Software Studio Project/Backend/obj/Debug/net6.0/Backend.dll
+/Users/phukphoom/Desktop/Software Studio Project/Backend/obj/Debug/net6.0/refint/Backend.dll
+/Users/phukphoom/Desktop/Software Studio Project/Backend/obj/Debug/net6.0/Backend.pdb
+/Users/phukphoom/Desktop/Software Studio Project/Backend/obj/Debug/net6.0/Backend.genruntimeconfig.cache
+/Users/phukphoom/Desktop/Software Studio Project/Backend/obj/Debug/net6.0/ref/Backend.dll

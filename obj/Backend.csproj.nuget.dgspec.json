@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\Desktop\\Software Studio\\Backend\\Backend.csproj": {}
+    "/Users/phukphoom/Desktop/Software Studio Project/Backend/Backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Desktop\\Software Studio\\Backend\\Backend.csproj": {
+    "/Users/phukphoom/Desktop/Software Studio Project/Backend/Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\Software Studio\\Backend\\Backend.csproj",
+        "projectUniqueName": "/Users/phukphoom/Desktop/Software Studio Project/Backend/Backend.csproj",
         "projectName": "Backend",
-        "projectPath": "C:\\Users\\Admin\\Desktop\\Software Studio\\Backend\\Backend.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Desktop\\Software Studio\\Backend\\obj\\",
+        "projectPath": "/Users/phukphoom/Desktop/Software Studio Project/Backend/Backend.csproj",
+        "packagesPath": "/Users/phukphoom/.nuget/packages/",
+        "outputPath": "/Users/phukphoom/Desktop/Software Studio Project/Backend/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/phukphoom/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -68,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.201/RuntimeIdentifierGraph.json"
         }
       }
     }
