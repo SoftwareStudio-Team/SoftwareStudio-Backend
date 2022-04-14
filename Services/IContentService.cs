@@ -4,9 +4,9 @@ namespace Backend.Services
 {
     public interface IContentService
     {
-        Content Get(string id);
+        List<Content> GetAll();
 
-        List<Content> Gets();
+        Content? GetById(string id);
 
         Content Create(Content content);
 

@@ -4,9 +4,9 @@ namespace Backend.Services
 {
     public interface ICommentService
     {
-        Comment Get(string id);
+        List<Comment> GetAllByContentId(string contentId);
 
-        List<Comment> Gets();
+        Comment? GetById(string id);
 
         Comment Create(Comment content);
 

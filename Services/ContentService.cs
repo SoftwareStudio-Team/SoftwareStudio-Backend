@@ -14,14 +14,21 @@ namespace Backend.Services
             this._contents = database.GetCollection<Content>(databaseSettings.ContentsCollectionName);
         }
 
-        public Content Get(string id)
-        {
-            return this._contents.Find(element => element.Id == id).FirstOrDefault();
-        }
-
-        public List<Content> Gets()
+        public List<Content> GetAll()
         {
             return this._contents.Find(element => true).ToList();
+        }
+
+        public Content? GetById(string id)
+        {
+            try
+            {
+                return this._contents.Find(element => element.Id == id).FirstOrDefault();
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public Content Create(Content content)
@@ -32,7 +39,6 @@ namespace Backend.Services
 
         public void Update(string id, Content content)
         {
-            content.Id = id;
             this._contents.ReplaceOne(element => element.Id == id, content);
         }
 

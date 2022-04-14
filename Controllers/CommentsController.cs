@@ -16,44 +16,46 @@ public class CommentsController : ControllerBase
     }
 
     [HttpGet("{id}")] // GET api/Comments/{id}
-    public ActionResult<Comment> Get(string id)
+    public ActionResult<Comment> GetById(string id)
     {
-        var comment = this._commentService.Get(id);
-
-        if (comment == null)
-        {
-            return NotFound(new { message = $"Comment Id:{id} is not found" });
-        }
-
-        return comment;
-    }
-
-    [HttpGet] // GET api/Comments
-    public ActionResult<List<Comment>> Gets()
-    {
-        var comments = this._commentService.Gets();
-        return comments;
-    }
-
-    [HttpPost] // POST api/Comments
-    public ActionResult<Comment> Create([FromBody] Comment comment)
-    {
-        this._commentService.Create(comment);
-
-        return CreatedAtAction(nameof(Get), new { id = comment.Id }, comment);
-    }
-
-    [HttpPut("{id}")] // PUT api/Comments/{id}
-    public ActionResult Update(string id, [FromBody] Comment comment)
-    {
-        var existingComment = this._commentService.Get(id);
+        var existingComment = this._commentService.GetById(id);
 
         if (existingComment == null)
         {
             return NotFound(new { message = $"Comment Id:{id} is not found" });
         }
 
-        this._commentService.Update(id, comment);
+        return existingComment;
+    }
+
+    [HttpPost] // POST api/Comments
+    public ActionResult<Comment> Create([FromBody] CommentCreateBind body)
+    {
+        var newComment = new Comment
+        {
+            CommentMessage = body.CommentMessage,
+            ContentId = body.ContentId,
+            OwnerId = body.OwnerId,
+        };
+
+        newComment = this._commentService.Create(newComment);
+
+        return CreatedAtAction(nameof(GetById), new { id = newComment.Id }, newComment);
+    }
+
+    [HttpPut("{id}")] // PUT api/Comments/{id}
+    public ActionResult Update(string id, [FromBody] CommentUpdateBind body)
+    {
+        var existingComment = this._commentService.GetById(id);
+
+        if (existingComment == null)
+        {
+            return NotFound(new { message = $"Comment Id:{id} is not found" });
+        }
+
+        existingComment.CommentMessage = body.CommentMessage;
+
+        this._commentService.Update(id, existingComment);
 
         return NoContent();
     }
@@ -61,7 +63,7 @@ public class CommentsController : ControllerBase
     [HttpDelete("{id}")] // DELETE api/Comments/{id}
     public ActionResult Delete(string id)
     {
-        var existingComment = this._commentService.Get(id);
+        var existingComment = this._commentService.GetById(id);
 
         if (existingComment == null)
         {
@@ -73,24 +75,10 @@ public class CommentsController : ControllerBase
         return Ok($"Comment Id:{id} deleted");
     }
 
-    [HttpPut("like/{id}")] // PUT api/Comments/like/{id}
-    public ActionResult like(string id)
-    {
-        /* implement like logic here */
-        return NoContent();
-    }
-
-    [HttpPut("unlike/{id}")] // PUT api/Comment/unlike/{id}
-    public ActionResult unlike(string id)
-    {
-        /* implement unlike logic here */
-        return NoContent();
-    }
-
     [HttpPut("hide/{id}")] // PUT api/Comments/hide/{id}
     public ActionResult hide(string id)
     {
-        var existingComment = this._commentService.Get(id);
+        var existingComment = this._commentService.GetById(id);
 
         if (existingComment == null)
         {
@@ -98,6 +86,7 @@ public class CommentsController : ControllerBase
         }
 
         existingComment.IsHid = true;
+
         this._commentService.Update(id, existingComment);
 
         return NoContent();
@@ -106,7 +95,7 @@ public class CommentsController : ControllerBase
     [HttpPut("unhide/{id}")] // PUT api/Comment/unhide/{id}
     public ActionResult unhide(string id)
     {
-        var existingComment = this._commentService.Get(id);
+        var existingComment = this._commentService.GetById(id);
 
         if (existingComment == null)
         {
@@ -114,8 +103,23 @@ public class CommentsController : ControllerBase
         }
 
         existingComment.IsHid = false;
+
         this._commentService.Update(id, existingComment);
 
+        return NoContent();
+    }
+
+    [HttpPut("like/{id}")] // PUT api/Comments/like/{id}
+    public ActionResult like(string id)
+    {
+        /* TODO : implement like logic here */
+        return NoContent();
+    }
+
+    [HttpPut("unlike/{id}")] // PUT api/Comment/unlike/{id}
+    public ActionResult unlike(string id)
+    {
+        /* TODO : implement unlike logic here */
         return NoContent();
     }
 }

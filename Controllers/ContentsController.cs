@@ -16,44 +16,55 @@ public class ContentsController : ControllerBase
     }
 
     [HttpGet("{id}")] // GET api/Contents/{id}
-    public ActionResult<Content> Get(string id)
+    public ActionResult<Content> GetById(string id)
     {
-        var content = this._contentService.Get(id);
-
-        if (content == null)
-        {
-            return NotFound(new { message = $"Content Id:{id} is not found" });
-        }
-
-        return content;
-    }
-
-    [HttpGet] // GET api/Contents
-    public ActionResult<List<Content>> Gets()
-    {
-        var contents = this._contentService.Gets();
-        return contents;
-    }
-
-    [HttpPost] // POST api/Contents
-    public ActionResult<Content> Create([FromBody] Content content)
-    {
-        this._contentService.Create(content);
-
-        return CreatedAtAction(nameof(Get), new { id = content.Id }, content);
-    }
-
-    [HttpPut("{id}")] // PUT api/Contents/{id}
-    public ActionResult Update(string id, [FromBody] Content content)
-    {
-        var existingContent = this._contentService.Get(id);
+        var existingContent = this._contentService.GetById(id);
 
         if (existingContent == null)
         {
             return NotFound(new { message = $"Content Id:{id} is not found" });
         }
 
-        this._contentService.Update(id, content);
+        return existingContent;
+    }
+
+    [HttpGet] // GET api/Contents
+    public ActionResult<List<Content>> GetAll()
+    {
+        var existingContents = this._contentService.GetAll();
+
+        return existingContents;
+    }
+
+    [HttpPost] // POST api/Contents
+    public ActionResult<Content> Create([FromBody] ContentCreateBind body)
+    {
+        var newContent = new Content
+        {
+            Title = body.Title,
+            ContentMarkdown = body.ContentMarkdown,
+            CreateDate = body.CreateDate,
+        };
+
+        newContent = this._contentService.Create(newContent);
+
+        return CreatedAtAction(nameof(GetById), new { id = newContent.Id }, newContent);
+    }
+
+    [HttpPut("{id}")] // PUT api/Contents/{id}
+    public ActionResult Update(string id, [FromBody] ContentUpdateBind body)
+    {
+        var existingContent = this._contentService.GetById(id);
+
+        if (existingContent == null)
+        {
+            return NotFound(new { message = $"Content Id:{id} is not found" });
+        }
+
+        existingContent.Title = body.Title;
+        existingContent.ContentMarkdown = body.ContentMarkdown;
+
+        this._contentService.Update(id, existingContent);
 
         return NoContent();
     }
@@ -61,7 +72,7 @@ public class ContentsController : ControllerBase
     [HttpDelete("{id}")] // DELETE api/Contents/{id}
     public ActionResult<Content> Delete(string id)
     {
-        var existingContent = this._contentService.Get(id);
+        var existingContent = this._contentService.GetById(id);
 
         if (existingContent == null)
         {
@@ -76,14 +87,14 @@ public class ContentsController : ControllerBase
     [HttpPut("like/{id}")] // PUT api/Contents/like/{id}
     public ActionResult like(string id)
     {
-        /* implement like logic here */
+        /* TODO : implement like logic here */
         return NoContent();
     }
 
     [HttpPut("unlike/{id}")] // PUT api/Contents/unlike/{id}
     public ActionResult unlike(string id)
     {
-        /* implement unlike logic here */
+        /* TODO : implement unlike logic here */
         return NoContent();
     }
 }

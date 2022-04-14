@@ -4,9 +4,11 @@ namespace Backend.Services
 {
     public interface IAccountService
     {
-        Account Get(string id);
+        List<Account> GetAll();
 
-        List<Account> Gets();
+        Account? GetById(string id);
+
+        Account? GetByUsername(string username);
 
         Account Create(Account account);
 

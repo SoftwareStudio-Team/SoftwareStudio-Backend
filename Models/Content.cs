@@ -9,12 +9,12 @@ namespace Backend.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; } = String.Empty;
-        
+
         [BsonElement("title")]
         public string Title { get; set; }
 
         [BsonElement("contentMarkdown")]
-        public string ContentMarkdown{ get; set; }
+        public string ContentMarkdown { get; set; }
 
         [BsonElement("createDate")]
         public DateTime CreateDate { get; set; }

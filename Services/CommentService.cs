@@ -14,14 +14,28 @@ namespace Backend.Services
             this._comments = database.GetCollection<Comment>(databaseSettings.CommentsCollectionName);
         }
 
-        public Comment Get(string id)
+        public List<Comment> GetAllByContentId(string contentId)
         {
-            return this._comments.Find(element => element.Id == id).FirstOrDefault();
+            try
+            {
+                return this._comments.Find(element => element.ContentId == contentId).ToList();
+            }
+            catch
+            {
+                return new List<Comment>();
+            }
         }
 
-        public List<Comment> Gets()
+        public Comment? GetById(string id)
         {
-            return this._comments.Find(element => true).ToList();
+            try
+            {
+                return this._comments.Find(element => element.Id == id).FirstOrDefault();
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public Comment Create(Comment comment)
@@ -32,7 +46,6 @@ namespace Backend.Services
 
         public void Update(string id, Comment comment)
         {
-            comment.Id = id;
             this._comments.ReplaceOne(element => element.Id == id, comment);
         }
 

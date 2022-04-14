@@ -14,14 +14,33 @@ namespace Backend.Services
             this._accounts = database.GetCollection<Account>(databaseSettings.AccountsCollectionName);
         }
 
-        public Account Get(string id)
-        {
-            return this._accounts.Find(element => element.Id == id).FirstOrDefault();
-        }
-
-        public List<Account> Gets()
+        public List<Account> GetAll()
         {
             return this._accounts.Find(element => true).ToList();
+        }
+
+        public Account? GetById(string id)
+        {
+            try
+            {
+                return this._accounts.Find(element => element.Id == id).FirstOrDefault();
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public Account? GetByUsername(string username)
+        {
+            try
+            {
+                return this._accounts.Find(element => element.Username == username).FirstOrDefault();
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public Account Create(Account account)
@@ -32,7 +51,6 @@ namespace Backend.Services
 
         public void Update(string id, Account account)
         {
-            account.Id = id;
             this._accounts.ReplaceOne(element => element.Id == id, account);
         }
 
