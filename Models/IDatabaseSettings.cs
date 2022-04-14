@@ -12,8 +12,8 @@ namespace Backend.Models
 
         string CommentsCollectionName { get; set; }
 
-        string LikeContentMapCollectionName { get; set; }
+        string LikeContentCollectionName { get; set; }
 
-        string LikeCommentMapCollectionName { get; set; }
+        string LikeCommentCollectionName { get; set; }
     }
 }

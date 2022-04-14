@@ -7,11 +7,13 @@ namespace Backend.Services
     public class CommentService : ICommentService
     {
         private readonly IMongoCollection<Comment> _comments;
+        private readonly IMongoCollection<LikeComment> _likeComments;
 
         public CommentService(IDatabaseSettings databaseSettings, IMongoClient mongoClient)
         {
             var database = mongoClient.GetDatabase(databaseSettings.DatabaseName);
             this._comments = database.GetCollection<Comment>(databaseSettings.CommentsCollectionName);
+            this._likeComments = database.GetCollection<LikeComment>(databaseSettings.LikeCommentCollectionName);
         }
 
         public List<Comment> GetAllByContentId(string contentId)
@@ -52,6 +54,7 @@ namespace Backend.Services
         public void Remove(string id)
         {
             this._comments.DeleteOne(element => element.Id == id);
+            this._likeComments.DeleteMany(element => element.CommentId == id);
         }
     }
 }
