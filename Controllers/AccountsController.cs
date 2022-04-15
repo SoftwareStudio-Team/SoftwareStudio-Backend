@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 
+using Backend.DTOs;
 using Backend.Models;
 using Backend.Services;
 
 namespace Backend.Controllers;
 
-[ApiController]
 [Route("api/[controller]")]
 public class AccountsController : ControllerBase
 {
@@ -17,45 +17,66 @@ public class AccountsController : ControllerBase
     }
 
     [HttpGet("{id}")] // GET api/Accounts/{id}
-    public ActionResult<Account> Get(string id)
+    public ActionResult<AccountDTO> GetDTOById(string id)
     {
-        var account = this._accountService.Get(id);
-
-        if (account == null)
-        {
-            return NotFound(new { message = $"Account Id:{id} is not found" });
-        }
-
-        return account;
-    }
-
-    [HttpPost] // POST api/Accounts
-    public ActionResult<Account> Post([FromBody] Account account)
-    {
-        this._accountService.Create(account);
-
-        return CreatedAtAction(nameof(Get), new { id = account.Id }, account);
-    }
-
-    [HttpPut("{id}")] // PUT api/Accounts/{id}
-    public ActionResult<Account> Put(string id, [FromBody] Account account)
-    {
-        var existingAccount = this._accountService.Get(id);
+        var existingAccount = this._accountService.GetDTOById(id);
 
         if (existingAccount == null)
         {
             return NotFound(new { message = $"Account Id:{id} is not found" });
         }
 
-        this._accountService.Update(id, account);
+        return existingAccount;
+    }
+
+    [HttpGet] // GET api/Accounts
+    public ActionResult<List<AccountDTO>> GetAllDTO()
+    {
+        var existingAccounts = this._accountService.GetAllDTO();
+
+        return existingAccounts;
+    }
+
+    [HttpPost] // POST api/Accounts
+    public ActionResult Create([FromBody] AccountCreateBind body)
+    {
+        var newAccount = new Account
+        {
+            Username = body.Username,
+            Password = body.Password,
+            FirstName = body.FirstName,
+            LastName = body.LastName,
+            BirthDate = body.BirthDate,
+        };
+
+        newAccount = this._accountService.Create(newAccount);
+
+        return CreatedAtAction(nameof(GetDTOById), new { id = newAccount.Id }, newAccount);
+    }
+
+    [HttpPut("{id}")] // PUT api/Accounts/{id}
+    public ActionResult Update(string id, [FromBody] AccountUpdateBind body)
+    {
+        var existingAccount = this._accountService.GetById(id);
+
+        if (existingAccount == null)
+        {
+            return NotFound(new { message = $"Account Id:{id} is not found" });
+        }
+
+        existingAccount.FirstName = body.FirstName;
+        existingAccount.LastName = body.LastName;
+        existingAccount.BirthDate = body.BirthDate;
+
+        this._accountService.Update(id, existingAccount);
 
         return NoContent();
     }
 
     [HttpDelete("{id}")] // DELETE api/Accounts/{id}
-    public ActionResult<Account> Delete(string id)
+    public ActionResult Delete(string id)
     {
-        var existingAccount = this._accountService.Get(id);
+        var existingAccount = this._accountService.GetById(id);
 
         if (existingAccount == null)
         {
@@ -65,5 +86,39 @@ public class AccountsController : ControllerBase
         this._accountService.Remove(id);
 
         return Ok($"Account Id:{id} deleted");
+    }
+
+    [HttpPut("ban/{id}")] // PUT api/Accounts/ban/{id}
+    public ActionResult Ban(string id)
+    {
+        var existingAccount = this._accountService.GetById(id);
+
+        if (existingAccount == null)
+        {
+            return NotFound(new { message = $"Account Id:{id} is not found" });
+        }
+
+        existingAccount.IsBanned = true;
+
+        this._accountService.Update(id, existingAccount);
+
+        return NoContent();
+    }
+
+    [HttpPut("unban/{id}")] // PUT api/Accounts/unban/{id}
+    public ActionResult Unban(string id)
+    {
+        var existingAccount = this._accountService.GetById(id);
+
+        if (existingAccount == null)
+        {
+            return NotFound(new { message = $"Account Id:{id} is not found" });
+        }
+
+        existingAccount.IsBanned = false;
+
+        this._accountService.Update(id, existingAccount);
+
+        return NoContent();
     }
 }

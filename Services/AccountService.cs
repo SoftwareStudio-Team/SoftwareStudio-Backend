@@ -1,6 +1,6 @@
 using MongoDB.Driver;
-using System.Security.Cryptography;
 
+using Backend.DTOs;
 using Backend.Models;
 
 namespace Backend.Services
@@ -15,9 +15,64 @@ namespace Backend.Services
             this._accounts = database.GetCollection<Account>(databaseSettings.AccountsCollectionName);
         }
 
-        public Account Get(string id)
+        public Account? GetById(string id)
         {
-            return this._accounts.Find(element => element.Id == id).FirstOrDefault();
+            try
+            {
+                return this._accounts.Find(element => element.Id == id).FirstOrDefault();
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public List<AccountDTO> GetAllDTO()
+        {
+            return this._accounts.Find(element => true).ToList().Select(element => new AccountDTO()
+            {
+                Id = element.Id,
+                Username = element.Username,
+                FirstName = element.FirstName,
+                LastName = element.LastName,
+                BirthDate = element.BirthDate,
+                Role = element.Role,
+                IsBanned = element.IsBanned,
+            }).ToList();
+        }
+
+        public AccountDTO? GetDTOById(string id)
+        {
+            try
+            {
+                var account = this._accounts.Find(element => element.Id == id).FirstOrDefault();
+                return new AccountDTO()
+                {
+                    Id = account.Id,
+                    Username = account.Username,
+                    FirstName = account.FirstName,
+                    LastName = account.LastName,
+                    BirthDate = account.BirthDate,
+                    Role = account.Role,
+                    IsBanned = account.IsBanned,
+                };
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public string? GetPasswordByUsername(string username)
+        {
+            try
+            {
+                return this._accounts.Find(element => element.Username == username).ToList().Select(element => element.Password).FirstOrDefault();
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public Account Create(Account account)
@@ -28,7 +83,6 @@ namespace Backend.Services
 
         public void Update(string id, Account account)
         {
-            account.Id = id;
             this._accounts.ReplaceOne(element => element.Id == id, account);
         }
 
