@@ -8,7 +8,7 @@ namespace Backend.Services
 
         Account? GetById(string id);
 
-        Account? GetByUsername(string username);
+        string? GetPasswordByUsername(string username);
 
         Account Create(Account account);
 

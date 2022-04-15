@@ -1,5 +1,6 @@
 using MongoDB.Driver;
 
+using Backend.DTOs;
 using Backend.Models;
 
 namespace Backend.Services
@@ -23,7 +24,7 @@ namespace Backend.Services
         {
             try
             {
-                return this._accounts.Find(element => element.Id == id).FirstOrDefault();
+                return this._accounts.Find(element => element.Id == id).ToList().FirstOrDefault();
             }
             catch
             {
@@ -31,11 +32,11 @@ namespace Backend.Services
             }
         }
 
-        public Account? GetByUsername(string username)
+        public string? GetPasswordByUsername(string username)
         {
             try
             {
-                return this._accounts.Find(element => element.Username == username).FirstOrDefault();
+                return this._accounts.Find(element => element.Username == username).ToList().Select(element => element.Password).FirstOrDefault();
             }
             catch
             {
