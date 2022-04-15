@@ -6,7 +6,7 @@ namespace Backend.Models
     [BsonIgnoreExtraElements]
     public class LikeContent
     {
-        [BsonElement("commentId")]
+        [BsonElement("contentId")]
         public string ContentId { get; set; }
 
         [BsonElement("accountId")]

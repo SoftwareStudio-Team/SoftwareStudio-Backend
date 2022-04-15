@@ -15,16 +15,47 @@ namespace Backend.Services
             this._accounts = database.GetCollection<Account>(databaseSettings.AccountsCollectionName);
         }
 
-        public List<Account> GetAll()
-        {
-            return this._accounts.Find(element => true).ToList();
-        }
-
         public Account? GetById(string id)
         {
             try
             {
-                return this._accounts.Find(element => element.Id == id).ToList().FirstOrDefault();
+                return this._accounts.Find(element => element.Id == id).FirstOrDefault();
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public List<AccountDTO> GetAllDTO()
+        {
+            return this._accounts.Find(element => true).ToList().Select(element => new AccountDTO()
+            {
+                Id = element.Id,
+                Username = element.Username,
+                FirstName = element.FirstName,
+                LastName = element.LastName,
+                BirthDate = element.BirthDate,
+                Role = element.Role,
+                IsBanned = element.IsBanned,
+            }).ToList();
+        }
+
+        public AccountDTO? GetDTOById(string id)
+        {
+            try
+            {
+                var account = this._accounts.Find(element => element.Id == id).FirstOrDefault();
+                return new AccountDTO()
+                {
+                    Id = account.Id,
+                    Username = account.Username,
+                    FirstName = account.FirstName,
+                    LastName = account.LastName,
+                    BirthDate = account.BirthDate,
+                    Role = account.Role,
+                    IsBanned = account.IsBanned,
+                };
             }
             catch
             {

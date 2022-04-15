@@ -1,12 +1,15 @@
+using Backend.DTOs;
 using Backend.Models;
 
 namespace Backend.Services
 {
     public interface IAccountService
     {
-        List<Account> GetAll();
-
         Account? GetById(string id);
+
+        List<AccountDTO> GetAllDTO();
+
+        AccountDTO? GetDTOById(string id);
 
         string? GetPasswordByUsername(string username);
 

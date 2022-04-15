@@ -17,46 +17,24 @@ public class AccountsController : ControllerBase
     }
 
     [HttpGet("{id}")] // GET api/Accounts/{id}
-    public ActionResult<AccountDTO> GetById(string id)
+    public ActionResult<AccountDTO> GetDTOById(string id)
     {
-        var existingAccount = this._accountService.GetById(id);
+        var existingAccount = this._accountService.GetDTOById(id);
 
         if (existingAccount == null)
         {
             return NotFound(new { message = $"Account Id:{id} is not found" });
         }
 
-        var res = new AccountDTO()
-        {
-            Id = existingAccount.Id,
-            Username = existingAccount.Username,
-            FirstName = existingAccount.FirstName,
-            LastName = existingAccount.LastName,
-            BirthDate = existingAccount.BirthDate,
-            Role = existingAccount.Role,
-            IsBanned = existingAccount.IsBanned
-        };
-
-        return res;
+        return existingAccount;
     }
 
     [HttpGet] // GET api/Accounts
-    public ActionResult<List<AccountDTO>> GetAll()
+    public ActionResult<List<AccountDTO>> GetAllDTO()
     {
-        var existingAccounts = this._accountService.GetAll();
+        var existingAccounts = this._accountService.GetAllDTO();
 
-        var res = existingAccounts.Select(element => new AccountDTO()
-        {
-            Id = element.Id,
-            Username = element.Username,
-            FirstName = element.FirstName,
-            LastName = element.LastName,
-            BirthDate = element.BirthDate,
-            Role = element.Role,
-            IsBanned = element.IsBanned
-        }).ToList();
-
-        return res;
+        return existingAccounts;
     }
 
     [HttpPost] // POST api/Accounts
@@ -73,7 +51,7 @@ public class AccountsController : ControllerBase
 
         newAccount = this._accountService.Create(newAccount);
 
-        return CreatedAtAction(nameof(GetById), new { id = newAccount.Id }, newAccount);
+        return CreatedAtAction(nameof(GetDTOById), new { id = newAccount.Id }, newAccount);
     }
 
     [HttpPut("{id}")] // PUT api/Accounts/{id}

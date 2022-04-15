@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
+using Backend.DTOs;
 using Backend.Models;
 using Backend.Services;
 
@@ -16,9 +17,9 @@ public class ContentsController : ControllerBase
     }
 
     [HttpGet("{id}")] // GET api/Contents/{id}
-    public ActionResult<Content> GetById(string id)
+    public ActionResult<ContentDTO> GetDTOById(string id)
     {
-        var existingContent = this._contentService.GetById(id);
+        var existingContent = this._contentService.GetDTOById(id);
 
         if (existingContent == null)
         {
@@ -29,9 +30,9 @@ public class ContentsController : ControllerBase
     }
 
     [HttpGet] // GET api/Contents
-    public ActionResult<List<Content>> GetAll()
+    public ActionResult<List<ContentDTO>> GetAllDTO()
     {
-        var existingContents = this._contentService.GetAll();
+        var existingContents = this._contentService.GetAllDTO();
 
         return existingContents;
     }
@@ -48,7 +49,7 @@ public class ContentsController : ControllerBase
 
         newContent = this._contentService.Create(newContent);
 
-        return CreatedAtAction(nameof(GetById), new { id = newContent.Id }, newContent);
+        return CreatedAtAction(nameof(GetDTOById), new { id = newContent.Id }, newContent);
     }
 
     [HttpPut("{id}")] // PUT api/Contents/{id}
@@ -85,16 +86,52 @@ public class ContentsController : ControllerBase
     }
 
     [HttpPut("like/{id}")] // PUT api/Contents/like/{id}
-    public ActionResult like(string id)
+    public ActionResult Like(string id)
     {
-        /* TODO : implement like logic here */
+        var existingContent = this._contentService.GetById(id);
+
+        if (existingContent == null)
+        {
+            return NotFound(new { message = $"Content Id:{id} is not found" });
+        }
+
+        /* TODO : change hard code AccountId later */
+        var likeContentObj = new LikeContent()
+        {
+            ContentId = id,
+            AccountId = "625906eecf175fc4739ffd6d"
+        };
+
+        var isLiked = this._contentService.IsLiked(likeContentObj);
+        if (isLiked)
+        {
+            return BadRequest(new { message = $"Content Id:{likeContentObj.ContentId} has been liked by Account Id:{likeContentObj.AccountId}" });
+        }
+
+        this._contentService.Like(likeContentObj);
+
         return NoContent();
     }
 
     [HttpPut("unlike/{id}")] // PUT api/Contents/unlike/{id}
-    public ActionResult unlike(string id)
+    public ActionResult Unlike(string id)
     {
-        /* TODO : implement unlike logic here */
+        var existingContent = this._contentService.GetById(id);
+
+        if (existingContent == null)
+        {
+            return NotFound(new { message = $"Content Id:{id} is not found" });
+        }
+
+        /* TODO : change hard code AccountId later */
+        var likeContentObj = new LikeContent()
+        {
+            ContentId = id,
+            AccountId = "625906eecf175fc4739ffd6d"
+        };
+
+        this._contentService.Unlike(likeContentObj);
+
         return NoContent();
     }
 }
