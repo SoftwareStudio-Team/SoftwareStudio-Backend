@@ -63,11 +63,11 @@ namespace Backend.Services
             }
         }
 
-        public string? GetPasswordByUsername(string username)
+        public Account? GetAccountByUsername(string username)
         {
             try
             {
-                return this._accounts.Find(element => element.Username == username).ToList().Select(element => element.Password).FirstOrDefault();
+                return this._accounts.Find(element => element.Username == username).FirstOrDefault();
             }
             catch
             {
