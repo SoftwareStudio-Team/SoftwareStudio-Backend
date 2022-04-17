@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 using Backend.DTOs;
 using Backend.Models;
@@ -7,6 +9,7 @@ using Backend.Utils;
 
 namespace Backend.Controllers;
 
+[Authorize]
 [Route("api/[controller]")]
 public class AccountsController : ControllerBase
 {
@@ -38,7 +41,7 @@ public class AccountsController : ControllerBase
         return existingAccounts;
     }
 
-    [HttpPost] // POST api/Accounts
+    [HttpPost, AllowAnonymous] // POST api/Accounts
     public ActionResult Create([FromBody] AccountCreateBind body)
     {
         var newAccount = new Account
@@ -66,6 +69,11 @@ public class AccountsController : ControllerBase
             return NotFound(new { message = $"Account Id:{id} is not found" });
         }
 
+        if (ClaimHelper.GetClaim(User.Identity, ClaimTypes.Sid).Value != existingAccount.Id)
+        {
+            return Forbid();
+        }
+
         existingAccount.FirstName = body.FirstName;
         existingAccount.LastName = body.LastName;
         existingAccount.BirthDate = body.BirthDate;
@@ -85,12 +93,17 @@ public class AccountsController : ControllerBase
             return NotFound(new { message = $"Account Id:{id} is not found" });
         }
 
+        if (ClaimHelper.GetClaim(User.Identity, ClaimTypes.Role).Value == "member" && ClaimHelper.GetClaim(User.Identity, ClaimTypes.Sid).Value != existingAccount.Id)
+        {
+            return Forbid();
+        }
+
         this._accountService.Remove(id);
 
         return Ok($"Account Id:{id} deleted");
     }
 
-    [HttpPut("ban/{id}")] // PUT api/Accounts/ban/{id}
+    [HttpPut("ban/{id}"), Authorize(Roles = "admin")] // PUT api/Accounts/ban/{id}
     public ActionResult Ban(string id)
     {
         var existingAccount = this._accountService.GetById(id);
@@ -107,7 +120,7 @@ public class AccountsController : ControllerBase
         return NoContent();
     }
 
-    [HttpPut("unban/{id}")] // PUT api/Accounts/unban/{id}
+    [HttpPut("unban/{id}"), Authorize(Roles = "admin")] // PUT api/Accounts/unban/{id}
     public ActionResult Unban(string id)
     {
         var existingAccount = this._accountService.GetById(id);

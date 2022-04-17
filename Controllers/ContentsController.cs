@@ -1,11 +1,15 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 using Backend.DTOs;
 using Backend.Models;
 using Backend.Services;
+using Backend.Utils;
 
 namespace Backend.Controllers;
 
+[Authorize]
 [Route("api/[controller]")]
 public class ContentsController : ControllerBase
 {
@@ -37,7 +41,7 @@ public class ContentsController : ControllerBase
         return existingContents;
     }
 
-    [HttpPost] // POST api/Contents
+    [HttpPost, Authorize(Roles = "admin")] // POST api/Contents
     public ActionResult<Content> Create([FromBody] ContentCreateBind body)
     {
         var newContent = new Content
@@ -52,7 +56,7 @@ public class ContentsController : ControllerBase
         return CreatedAtAction(nameof(GetDTOById), new { id = newContent.Id }, newContent);
     }
 
-    [HttpPut("{id}")] // PUT api/Contents/{id}
+    [HttpPut("{id}"), Authorize(Roles = "admin")] // PUT api/Contents/{id}
     public ActionResult Update(string id, [FromBody] ContentUpdateBind body)
     {
         var existingContent = this._contentService.GetById(id);
@@ -70,7 +74,7 @@ public class ContentsController : ControllerBase
         return NoContent();
     }
 
-    [HttpDelete("{id}")] // DELETE api/Contents/{id}
+    [HttpDelete("{id}"), Authorize(Roles = "admin")] // DELETE api/Contents/{id}
     public ActionResult<Content> Delete(string id)
     {
         var existingContent = this._contentService.GetById(id);
@@ -95,11 +99,10 @@ public class ContentsController : ControllerBase
             return NotFound(new { message = $"Content Id:{id} is not found" });
         }
 
-        /* TODO : change hard code AccountId later */
         var likeContentObj = new LikeContent()
         {
             ContentId = id,
-            AccountId = "625906eecf175fc4739ffd6d"
+            AccountId = ClaimHelper.GetClaim(User.Identity, ClaimTypes.Sid).Value
         };
 
         var isLiked = this._contentService.IsLiked(likeContentObj);
@@ -123,11 +126,10 @@ public class ContentsController : ControllerBase
             return NotFound(new { message = $"Content Id:{id} is not found" });
         }
 
-        /* TODO : change hard code AccountId later */
         var likeContentObj = new LikeContent()
         {
             ContentId = id,
-            AccountId = "625906eecf175fc4739ffd6d"
+            AccountId = ClaimHelper.GetClaim(User.Identity, ClaimTypes.Sid).Value
         };
 
         this._contentService.Unlike(likeContentObj);
