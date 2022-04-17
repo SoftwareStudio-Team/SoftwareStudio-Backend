@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Backend.DTOs;
 using Backend.Models;
 using Backend.Services;
+using Backend.Utils;
 
 namespace Backend.Controllers;
 
@@ -43,7 +44,7 @@ public class AccountsController : ControllerBase
         var newAccount = new Account
         {
             Username = body.Username,
-            Password = body.Password,
+            Password = HashHelper.Hash(body.Password),
             FirstName = body.FirstName,
             LastName = body.LastName,
             BirthDate = body.BirthDate,
@@ -53,6 +54,7 @@ public class AccountsController : ControllerBase
 
         return CreatedAtAction(nameof(GetDTOById), new { id = newAccount.Id }, newAccount);
     }
+
 
     [HttpPut("{id}")] // PUT api/Accounts/{id}
     public ActionResult Update(string id, [FromBody] AccountUpdateBind body)
