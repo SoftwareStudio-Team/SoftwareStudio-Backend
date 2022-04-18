@@ -84,14 +84,3 @@ C:/Users/Admin/Desktop/Software Studio/Backend/bin/Debug/net6.0/runtimes/win/nat
 /Users/phukphoom/Desktop/Software Studio Project/Backend/obj/Debug/net6.0/Backend.pdb
 /Users/phukphoom/Desktop/Software Studio Project/Backend/obj/Debug/net6.0/Backend.genruntimeconfig.cache
 /Users/phukphoom/Desktop/Software Studio Project/Backend/obj/Debug/net6.0/ref/Backend.dll
-/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/Microsoft.IdentityModel.JsonWebTokens.dll
-/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/Microsoft.IdentityModel.Logging.dll
-/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/Microsoft.IdentityModel.Tokens.dll
-/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/System.IdentityModel.Tokens.Jwt.dll
-/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
-/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/Microsoft.IdentityModel.Protocols.dll
-/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/Microsoft.Extensions.DependencyModel.dll
-/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/Scrutor.dll
-/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/Swashbuckle.AspNetCore.Filters.dll
-/Users/phukphoom/Desktop/Software Studio Project/Backend/bin/Debug/net6.0/Swashbuckle.AspNetCore.Filters.Abstractions.dll
