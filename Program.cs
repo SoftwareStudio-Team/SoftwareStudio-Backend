@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using MongoDB.Driver;
 
 using Backend.Models;
@@ -20,6 +21,19 @@ builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAuthentication(op => { op.DefaultScheme = "Cookies"; }).AddCookie("Cookies", op =>
+{
+    op.Cookie.Name = "auth";
+    op.Cookie.SameSite = SameSiteMode.None;
+    op.Events = new CookieAuthenticationEvents
+    {
+        OnRedirectToLogin = redirectContext =>
+        {
+            redirectContext.HttpContext.Response.StatusCode = 401;
+            return Task.CompletedTask;
+        }
+    };
+});
 
 var app = builder.Build();
 
@@ -31,6 +45,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

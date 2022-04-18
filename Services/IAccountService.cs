@@ -11,7 +11,7 @@ namespace Backend.Services
 
         AccountDTO? GetDTOById(string id);
 
-        string? GetPasswordByUsername(string username);
+        Account? GetAccountByUsername(string username);
 
         Account Create(Account account);
 

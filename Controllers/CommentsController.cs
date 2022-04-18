@@ -1,11 +1,15 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 using Backend.DTOs;
 using Backend.Models;
 using Backend.Services;
+using Backend.Utils;
 
 namespace Backend.Controllers;
 
+[Authorize]
 [Route("api/[controller]")]
 public class CommentsController : ControllerBase
 {
@@ -62,6 +66,11 @@ public class CommentsController : ControllerBase
             return NotFound(new { message = $"Comment Id:{id} is not found" });
         }
 
+        if (ClaimHelper.GetClaim(User.Identity, ClaimTypes.Sid).Value != existingComment.OwnerId)
+        {
+            return Forbid();
+        }
+
         existingComment.CommentMessage = body.CommentMessage;
 
         this._commentService.Update(id, existingComment);
@@ -79,12 +88,17 @@ public class CommentsController : ControllerBase
             return NotFound(new { message = $"Comment Id:{id} is not found" });
         }
 
+        if (ClaimHelper.GetClaim(User.Identity, ClaimTypes.Role).Value == "member" && ClaimHelper.GetClaim(User.Identity, ClaimTypes.Sid).Value != existingComment.OwnerId)
+        {
+            return Forbid();
+        }
+
         this._commentService.Remove(id);
 
         return Ok($"Comment Id:{id} deleted");
     }
 
-    [HttpPut("hide/{id}")] // PUT api/Comments/hide/{id}
+    [HttpPut("hide/{id}"), Authorize(Roles = "admin")] // PUT api/Comments/hide/{id}
     public ActionResult hide(string id)
     {
         var existingComment = this._commentService.GetById(id);
@@ -101,7 +115,7 @@ public class CommentsController : ControllerBase
         return NoContent();
     }
 
-    [HttpPut("unhide/{id}")] // PUT api/Comment/unhide/{id}
+    [HttpPut("unhide/{id}"), Authorize(Roles = "admin")] // PUT api/Comment/unhide/{id}
     public ActionResult unhide(string id)
     {
         var existingComment = this._commentService.GetById(id);
@@ -128,11 +142,10 @@ public class CommentsController : ControllerBase
             return NotFound(new { message = $"Content Id:{id} is not found" });
         }
 
-        /* TODO : change hard code AccountId later */
         var likeCommentObj = new LikeComment()
         {
             CommentId = id,
-            AccountId = "625906eecf175fc4739ffd6d"
+            AccountId = ClaimHelper.GetClaim(User.Identity, ClaimTypes.Sid).Value
         };
 
         var isLiked = this._commentService.IsLiked(likeCommentObj);
@@ -156,11 +169,10 @@ public class CommentsController : ControllerBase
             return NotFound(new { message = $"Content Id:{id} is not found" });
         }
 
-        /* TODO : change hard code AccountId later */
         var likeCommentObj = new LikeComment()
         {
             CommentId = id,
-            AccountId = "625906eecf175fc4739ffd6d"
+            AccountId = ClaimHelper.GetClaim(User.Identity, ClaimTypes.Sid).Value
         };
 
         this._commentService.Unlike(likeCommentObj);
