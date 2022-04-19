@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var allowOrigins = "allowOrigins";
+
 // Add services to the container.
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection(nameof(DatabaseSettings)));
 builder.Services.AddSingleton<IDatabaseSettings>(sp => sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
@@ -21,6 +23,10 @@ builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCors(op =>
+{
+    op.AddPolicy(name: "all_origins", policy => { policy.WithOrigins("*"); });
+});
 builder.Services.AddAuthentication(op => { op.DefaultScheme = "Cookies"; }).AddCookie("Cookies", op =>
 {
     op.Cookie.Name = "auth";
@@ -43,6 +49,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("all_origins");
 
 app.UseHttpsRedirection();
 
