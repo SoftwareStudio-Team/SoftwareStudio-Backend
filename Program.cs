@@ -21,10 +21,7 @@ builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddCors(op =>
-{
-    op.AddPolicy(name: "all_origins", policy => { policy.WithOrigins("*"); });
-});
+builder.Services.AddCors();
 builder.Services.AddAuthentication(op => { op.DefaultScheme = "Cookies"; }).AddCookie("Cookies", op =>
 {
     op.Cookie.Name = "auth";
@@ -48,7 +45,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("all_origins");
+app.UseCors(op => op.AllowAnyMethod().AllowAnyHeader().SetIsOriginAllowed(origin => true).AllowCredentials());
 
 app.UseHttpsRedirection();
 
