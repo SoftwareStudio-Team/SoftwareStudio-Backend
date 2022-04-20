@@ -44,6 +44,12 @@ public class AccountsController : ControllerBase
     [HttpPost, AllowAnonymous] // POST api/Accounts
     public ActionResult Create([FromBody] AccountCreateBind body)
     {
+        var existingAccount = this._accountService.GetAccountByUsername(body.Username);
+
+        if(existingAccount!=null){
+            return BadRequest(new { message = $"Username:{body.Username} is duplicated" });
+        }
+
         var newAccount = new Account
         {
             Username = body.Username,
