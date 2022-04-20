@@ -20,7 +20,7 @@ public class ContentsController : ControllerBase
         this._contentService = contentService;
     }
 
-    [HttpGet("{id}")] // GET api/Contents/{id}
+    [HttpGet("{id}"), AllowAnonymous] // GET api/Contents/{id}
     public ActionResult<ContentDTO> GetDTOById(string id)
     {
         var existingContent = this._contentService.GetDTOById(id);
@@ -33,7 +33,7 @@ public class ContentsController : ControllerBase
         return existingContent;
     }
 
-    [HttpGet] // GET api/Contents
+    [HttpGet, AllowAnonymous] // GET api/Contents
     public ActionResult<List<ContentDTO>> GetAllDTO()
     {
         var existingContents = this._contentService.GetAllDTO();
