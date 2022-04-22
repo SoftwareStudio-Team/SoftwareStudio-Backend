@@ -26,6 +26,7 @@ builder.Services.AddAuthentication(op => { op.DefaultScheme = "Cookies"; }).AddC
 {
     op.Cookie.Name = "auth";
     op.Cookie.SameSite = SameSiteMode.None;
+    op.Cookie.Expiration = TimeSpan.FromDays(1);
     op.Events = new CookieAuthenticationEvents
     {
         OnRedirectToLogin = redirectContext =>
