@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
 
 using Backend.DTOs;
@@ -34,10 +35,16 @@ public class AuthController : ControllerBase
         var claimsIdentity = new ClaimsIdentity(new List<Claim>{
             new Claim(ClaimTypes.Sid ,existingAccount.Id),
             new Claim(ClaimTypes.Role ,existingAccount.Role),
-        }, "Cookies");
+        }, CookieAuthenticationDefaults.AuthenticationScheme);
         var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+        var cookieProperties = new AuthenticationProperties
+        {
+            AllowRefresh = true,
+            IsPersistent = true,
+            ExpiresUtc = DateTime.Now.AddDays(1)
+        };
 
-        await Request.HttpContext.SignInAsync("Cookies", claimsPrincipal);
+        await Request.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal, cookieProperties);
 
         var accountDetail = new AccountDTO()
         {
