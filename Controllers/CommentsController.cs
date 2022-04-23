@@ -49,6 +49,7 @@ public class CommentsController : ControllerBase
             CommentMessage = body.CommentMessage,
             ContentId = body.ContentId,
             OwnerId = body.OwnerId,
+            CreateDate = DateTime.Now,
         };
 
         newComment = this._commentService.Create(newComment);
