@@ -48,7 +48,7 @@ public class ContentsController : ControllerBase
         {
             Title = body.Title,
             ContentMarkdown = body.ContentMarkdown,
-            CreateDate = new DateTime(),
+            CreateDate = DateTime.Now,
         };
 
         newContent = this._contentService.Create(newContent);
