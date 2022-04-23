@@ -8,7 +8,5 @@ namespace Backend.Models
         public string Title { get; set; }
 
         public string ContentMarkdown { get; set; }
-
-        public DateTime CreateDate { get; set; }
     }
 }
