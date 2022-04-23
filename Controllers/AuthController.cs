@@ -13,12 +13,10 @@ namespace Backend.Controllers;
 [Route("api/[controller]")]
 public class AuthController : ControllerBase
 {
-    private readonly IConfiguration _configuration;
     private readonly IAccountService _accountService;
 
-    public AuthController(IConfiguration configuration, IAccountService accountService)
+    public AuthController(IAccountService accountService)
     {
-        this._configuration = configuration;
         this._accountService = accountService;
     }
 

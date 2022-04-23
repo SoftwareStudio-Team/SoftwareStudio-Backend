@@ -14,10 +14,12 @@ namespace Backend.Controllers;
 public class CommentsController : ControllerBase
 {
     private readonly ICommentService _commentService;
+    private readonly IAccountService _accountService;
 
-    public CommentsController(ICommentService commentService)
+    public CommentsController(ICommentService commentService, IAccountService accountService)
     {
         this._commentService = commentService;
+        this._accountService = accountService;
     }
 
     [HttpGet("{id}")] // GET api/Comments/{id}
@@ -44,6 +46,11 @@ public class CommentsController : ControllerBase
     [HttpPost] // POST api/Comments
     public ActionResult<Comment> Create([FromBody] CommentCreateBind body)
     {
+        if (this._accountService.GetDTOById(ClaimHelper.GetClaim(User.Identity, ClaimTypes.Sid).Value).IsBanned)
+        {
+            return Forbid();
+        }
+
         var newComment = new Comment
         {
             CommentMessage = body.CommentMessage,
@@ -60,6 +67,11 @@ public class CommentsController : ControllerBase
     [HttpPut("{id}")] // PUT api/Comments/{id}
     public ActionResult Update(string id, [FromBody] CommentUpdateBind body)
     {
+        if (this._accountService.GetDTOById(ClaimHelper.GetClaim(User.Identity, ClaimTypes.Sid).Value).IsBanned)
+        {
+            return Forbid();
+        }
+
         var existingComment = this._commentService.GetById(id);
 
         if (existingComment == null)
@@ -82,6 +94,11 @@ public class CommentsController : ControllerBase
     [HttpDelete("{id}")] // DELETE api/Comments/{id}
     public ActionResult Delete(string id)
     {
+        if (this._accountService.GetDTOById(ClaimHelper.GetClaim(User.Identity, ClaimTypes.Sid).Value).IsBanned)
+        {
+            return Forbid();
+        }
+
         var existingComment = this._commentService.GetById(id);
 
         if (existingComment == null)
