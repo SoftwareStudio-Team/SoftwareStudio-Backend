@@ -61,7 +61,7 @@ public class CommentsController : ControllerBase
 
         newComment = this._commentService.Create(newComment);
 
-        return CreatedAtAction(nameof(GetDTOById), new { id = newComment.Id }, newComment);
+        return CreatedAtAction(nameof(GetDTOById), new { id = newComment.Id });
     }
 
     [HttpPut("{id}")] // PUT api/Comments/{id}
@@ -88,7 +88,7 @@ public class CommentsController : ControllerBase
 
         this._commentService.Update(id, existingComment);
 
-        return CreatedAtAction(nameof(GetDTOById), new { id = existingComment.Id }, existingComment);
+        return CreatedAtAction(nameof(GetDTOById), new { id = existingComment.Id });
     }
 
     [HttpDelete("{id}")] // DELETE api/Comments/{id}
