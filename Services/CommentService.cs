@@ -100,6 +100,8 @@ namespace Backend.Services
                     Username = account.Username,
                     FirstName = account.FirstName,
                     LastName = account.LastName,
+                    Role = account.Role,
+                    IsBanned = account.IsBanned
                 };
             }
             catch

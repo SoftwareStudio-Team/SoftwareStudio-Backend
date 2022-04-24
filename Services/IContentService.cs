@@ -13,6 +13,8 @@ namespace Backend.Services
 
         List<CommentDTO> GetAllComment(string id);
 
+        List<AccountDTO> GetAllCommentLike(string commentId);
+
         List<AccountDTO> GetAllLike(string id);
 
         AccountDTO? GetAccountDetail(string accountId);

@@ -9,6 +9,7 @@ namespace Backend.Services
     {
         private readonly IMongoCollection<Content> _contents;
         private readonly IMongoCollection<LikeContent> _likeContents;
+        private readonly IMongoCollection<LikeComment> _likeComments;
         private readonly IMongoCollection<Account> _accounts;
         private readonly IMongoCollection<Comment> _comments;
 
@@ -17,6 +18,7 @@ namespace Backend.Services
             var database = mongoClient.GetDatabase(databaseSettings.DatabaseName);
             this._contents = database.GetCollection<Content>(databaseSettings.ContentsCollectionName);
             this._likeContents = database.GetCollection<LikeContent>(databaseSettings.LikeContentCollectionName);
+            this._likeComments = database.GetCollection<LikeComment>(databaseSettings.LikeCommentCollectionName);
             this._accounts = database.GetCollection<Account>(databaseSettings.AccountsCollectionName);
             this._comments = database.GetCollection<Comment>(databaseSettings.CommentsCollectionName);
         }
@@ -80,12 +82,34 @@ namespace Backend.Services
                     IsHid = element.IsHid,
                     ContentId = element.ContentId,
                     Owner = this.GetAccountDetail(element.OwnerId),
-                    Likes = this.GetAllLike(element.Id)
+                    Likes = this.GetAllCommentLike(element.Id)
                 }).ToList();
             }
             catch
             {
                 return new List<CommentDTO>();
+            }
+        }
+
+        public List<AccountDTO> GetAllCommentLike(string commentId)
+        {
+            try
+            {
+                return this._likeComments.Find(element => element.CommentId == commentId).ToList().Select(element =>
+                {
+                    var likedAccount = this._accounts.Find(acc => acc.Id == element.AccountId).FirstOrDefault();
+                    return new AccountDTO()
+                    {
+                        Id = likedAccount.Id,
+                        Username = likedAccount.Username,
+                        FirstName = likedAccount.FirstName,
+                        LastName = likedAccount.LastName,
+                    };
+                }).ToList();
+            }
+            catch
+            {
+                return new List<AccountDTO>();
             }
         }
 
@@ -122,6 +146,8 @@ namespace Backend.Services
                     Username = account.Username,
                     FirstName = account.FirstName,
                     LastName = account.LastName,
+                    Role = account.Role,
+                    IsBanned = account.IsBanned
                 };
             }
             catch
