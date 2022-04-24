@@ -62,7 +62,7 @@ public class AccountsController : ControllerBase
 
         newAccount = this._accountService.Create(newAccount);
 
-        return CreatedAtAction(nameof(GetDTOById), new { id = newAccount.Id });
+        return CreatedAtAction(nameof(GetDTOById), new { id = newAccount.Id }, newAccount);
     }
 
 
@@ -87,7 +87,7 @@ public class AccountsController : ControllerBase
 
         this._accountService.Update(id, existingAccount);
 
-        return CreatedAtAction(nameof(GetDTOById), new { id = existingAccount.Id }); ;
+        return CreatedAtAction(nameof(GetDTOById), new { id = existingAccount.Id }, existingAccount); ;
     }
 
     [HttpDelete("{id}")] // DELETE api/Accounts/{id}

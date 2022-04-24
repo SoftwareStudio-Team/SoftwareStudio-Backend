@@ -53,7 +53,7 @@ public class ContentsController : ControllerBase
 
         newContent = this._contentService.Create(newContent);
 
-        return CreatedAtAction(nameof(GetDTOById), new { id = newContent.Id });
+        return CreatedAtAction(nameof(GetDTOById), new { id = newContent.Id }, newContent);
     }
 
     [HttpPut("{id}"), Authorize(Roles = "admin")] // PUT api/Contents/{id}
@@ -71,7 +71,7 @@ public class ContentsController : ControllerBase
 
         this._contentService.Update(id, existingContent);
 
-        return CreatedAtAction(nameof(GetDTOById), new { id = existingContent.Id });
+        return CreatedAtAction(nameof(GetDTOById), new { id = existingContent.Id }, existingContent);
     }
 
     [HttpDelete("{id}"), Authorize(Roles = "admin")] // DELETE api/Contents/{id}
