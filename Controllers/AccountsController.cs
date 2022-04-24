@@ -46,7 +46,8 @@ public class AccountsController : ControllerBase
     {
         var existingAccount = this._accountService.GetAccountByUsername(body.Username);
 
-        if(existingAccount!=null){
+        if (existingAccount != null)
+        {
             return BadRequest(new { message = $"Username:{body.Username} is duplicated" });
         }
 
@@ -86,7 +87,7 @@ public class AccountsController : ControllerBase
 
         this._accountService.Update(id, existingAccount);
 
-        return NoContent();
+        return CreatedAtAction(nameof(GetDTOById), new { id = existingAccount.Id }, existingAccount); ;
     }
 
     [HttpDelete("{id}")] // DELETE api/Accounts/{id}

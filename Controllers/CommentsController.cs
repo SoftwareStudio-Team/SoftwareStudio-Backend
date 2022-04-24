@@ -88,7 +88,7 @@ public class CommentsController : ControllerBase
 
         this._commentService.Update(id, existingComment);
 
-        return NoContent();
+        return CreatedAtAction(nameof(GetDTOById), new { id = existingComment.Id }, existingComment);
     }
 
     [HttpDelete("{id}")] // DELETE api/Comments/{id}

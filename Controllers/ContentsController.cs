@@ -71,7 +71,7 @@ public class ContentsController : ControllerBase
 
         this._contentService.Update(id, existingContent);
 
-        return NoContent();
+        return CreatedAtAction(nameof(GetDTOById), new { id = existingContent.Id }, existingContent);
     }
 
     [HttpDelete("{id}"), Authorize(Roles = "admin")] // DELETE api/Contents/{id}
